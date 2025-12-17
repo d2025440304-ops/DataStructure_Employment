@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 #define N 100
 
 //在.h文件中，是声明结构体和函数等顺序表的方法
@@ -29,5 +30,12 @@ typedef struct SeqList_
     int capacity;//用来记录目前的空间
 }SL;
 
+//顺序表的初始化
 void SLInit(SL *ps);
 
+//顺序表的销毁；
+void SLDestory(SL *ps);
+
+//顺序表的尾插/头插
+void SLPushBack(SL * ps ,SLDataType n);//尾插 当前的数据类型
+void SLPushFront(SL * ps ,SLDataType n);//头插
