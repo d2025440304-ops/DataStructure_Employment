@@ -30,12 +30,19 @@ typedef struct SeqList_
     int capacity;//用来记录目前的空间
 }SL;
 
+//顺序表打印函数
+void SLPrint(SL s);
+
 //顺序表的初始化
 void SLInit(SL *ps);
 
 //顺序表的销毁；
-void SLDestory(SL *ps);
+void SLDestroy(SL *ps);
 
 //顺序表的尾插/头插
 void SLPushBack(SL * ps ,SLDataType n);//尾插 当前的数据类型
 void SLPushFront(SL * ps ,SLDataType n);//头插
+
+//顺序表的删除
+void SLPopBack(SL *ps);
+void SLPopFront(SL *ps);

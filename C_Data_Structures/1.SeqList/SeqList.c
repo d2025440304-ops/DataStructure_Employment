@@ -12,7 +12,7 @@ void SLInit(SL* ps)
 }
 
 //销毁顺序表
-void SLDestory(SL * ps)
+void SLDestroy(SL * ps)
 {
     if (ps->arr)
     {
@@ -22,17 +22,26 @@ void SLDestory(SL * ps)
     ps->capacity = ps->size = 0;
 }
 
-
-// 顺序表的的尾插
- void SLPushBack(SL * ps ,SLDataType n)
+//顺序表打印函数
+void SLPrint(SL s)
 {
-    //如果传的是空指针的话，就会出问题，报错，用断言、
-    assert(ps);
-    /*在插入前，/*应该先判断空间是否足够插入
-    因为数组的下标为 0，所以 当前的size即数组中元素个数就是尾部插入的位置
-    而判断空间是否足够，就要看 size 和 capacity 是否相等，如果相等，那就不够用
-    举例，当size是 6 时，待插的元素下标就是 6，而空间必须是 7
-    如果空间也是 6 的话，,空间不足就会越界访问#1#*/
+  for (int i = 0;i<s.size;i++)
+  {
+    printf("%d ",s.arr[i]);
+  }
+  printf("\n");
+}
+
+
+
+//检查存储容量
+void SLCheckcapacity(SL *ps)
+{
+    // 在插入前，应该先判断空间是否足够插入
+    // 因为数组的下标为 0，所以 当前的size即数组中元素个数就是尾部插入的位置
+    // 而判断空间是否足够，就要看 size 和 capacity 是否相等，如果相等，那就不够用
+    // 举例，当size是 6 时，待插的元素下标就是 6，而空间必须是 7
+    // 如果空间也是 6 的话，,空间不足就会越界访问1
     if (ps->size == ps->capacity)
     {
         //增加空间前还要判断 capacity 是否为 0
@@ -42,12 +51,62 @@ void SLDestory(SL * ps)
         //要检查是否申请成功
         if (tmp == NULL)
         {
-            perror("realloc file");
+            perror("realloc fail");
             exit(0);
         }
         ps->arr = tmp;//交给 arr 来维护
         tmp = NULL;
         ps->capacity = Newcapacity;
     }
+}
+
+
+// 顺序表的的尾插
+ void SLPushBack(SL * ps ,SLDataType n)
+{
+    //如果传的是空指针的话，就会出问题，报错，用断言、
+    assert(ps);
+
+    //检查内存容量
+    SLCheckcapacity(ps);
+
+    //尾插
     ps->arr[ps->size++] = n;//后置++，先使用 size 再让 size 更新记录
+}
+
+//顺序表的头插
+void SLPushFront(SL *ps,SLDataType n)
+{
+    assert(ps);
+    //判断空间
+    SLCheckcapacity(ps);
+    //因为是头插，所以要讲数据往后移
+    for (int i = ps->size;i>0;i--)
+    {
+        ps->arr[i] = ps->arr[i-1];
+    }
+    ps->arr[0] = n;
+    //在插入完成后，size 要更新
+    ps->size++;//更新 size
+}
+
+//顺序表的删除
+//末尾删除
+void SLPopBack(SL *ps)
+{
+  assert(ps);
+  assert(ps->size);//数据个数不能为空
+  ps->size--;//直接覆盖，当进行增删查改时，不影响，而且效率更高
+}
+//头部删除
+void SLPopFront(SL *ps)
+{
+  assert(ps);
+  assert(ps->size);
+  //头删也就是将后面的数据覆盖到第一个，并且 size--
+  for (int i = 0;i<ps->size-1;i++)
+  {
+    ps->arr[i] = ps->arr[i+1];
+  }
+  ps->size--;
 }
