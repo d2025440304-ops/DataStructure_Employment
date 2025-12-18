@@ -47,7 +47,7 @@ void SLCheckcapacity(SL *ps)
         //增加空间前还要判断 capacity 是否为 0
         //增容增多大的空间呢？最好增目前两倍的空间
         int Newcapacity = ps->capacity == 0 ? 4 : 2 * ps->capacity;
-        SLDataType * tmp = (SLDataType *)realloc(ps->arr,Newcapacity*sizeof(SLDataType));
+      SLDataType * tmp  = (SLDataType *)realloc(ps->arr,Newcapacity*sizeof(SLDataType));
         //要检查是否申请成功
         if (tmp == NULL)
         {
@@ -56,7 +56,7 @@ void SLCheckcapacity(SL *ps)
         }
         ps->arr = tmp;//交给 arr 来维护
         tmp = NULL;
-        ps->capacity = Newcapacity;
+        ps->capacity = Newcapacity;//空间内容也要更新
     }
 }
 
@@ -96,7 +96,7 @@ void SLPopBack(SL *ps)
 {
   assert(ps);
   assert(ps->size);//数据个数不能为空
-  ps->size--;//直接覆盖，当进行增删查改时，不影响，而且效率更高
+  ps->size--;//直接覆盖，当进行增删查改时，不影响，而且效率更高，惰性删除
 }
 //头部删除
 void SLPopFront(SL *ps)
@@ -110,3 +110,47 @@ void SLPopFront(SL *ps)
   }
   ps->size--;
 }
+
+//顺序表指定位置的插入
+void SLInsert(SL *ps,int pos,SLDataType n)
+{
+  assert(ps);
+  //临界情况就是头插和尾插
+  assert(pos >= 0 && pos <= ps->size);
+  //插入前要将待插入位置及以后的数据向后挪动
+  for (int i = ps->size;i>pos;i--)
+  {
+    ps->arr[i] = ps->arr[i-1];
+  }
+  ps->arr[pos] = n;
+  ps->size++;
+}
+
+//顺序表的指定位置删除
+void SLErase(SL * ps ,int pos)
+{
+  assert(ps);
+  assert(pos >= 0 && pos < ps->size);
+  //将要删除位置的数据以后的数据往前移动，覆盖数组
+  for (int i =pos;i<ps->size-1;i++)
+  {
+    ps->arr[i] = ps->arr[i+1];
+  }
+  ps->size--;
+}
+
+//顺序表的查找
+int SLFind(SL *ps,SLDataType n)
+{
+  assert(ps);
+  for (int i = 0;i<ps->size;i++)
+  {
+    if (ps->arr[i] == n)
+    {
+      //找到了
+      return i;
+    }
+  }
+  return -1;
+}
+

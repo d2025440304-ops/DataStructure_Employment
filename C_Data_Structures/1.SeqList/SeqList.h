@@ -46,3 +46,8 @@ void SLPushFront(SL * ps ,SLDataType n);//头插
 //顺序表的删除
 void SLPopBack(SL *ps);
 void SLPopFront(SL *ps);
+
+//顺序表的指定位置插入删除
+void SLInsert(SL *ps,int pos,SLDataType n);
+void SLErase(SL *ps,int pos);
+int SLFind(SL *ps,SLDataType n);
