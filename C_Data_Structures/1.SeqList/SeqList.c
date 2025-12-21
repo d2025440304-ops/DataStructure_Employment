@@ -3,17 +3,17 @@
 //此 SeqList.c文件用来实现顺序表的方法
 // .c文件做出函数的定义，只要包括.h 文件的头文件，在.h文件里做出了定义，就可以用声明了的函数
 
-
 //初始化顺序表函数
 void SLInit(SL* ps)
 {
-    ps->arr = 0;
+    ps->arr = NULL;
     ps->capacity = ps->size = 0;
 }
 
 //销毁顺序表
 void SLDestroy(SL * ps)
 {
+  //如果顺序表不为空
     if (ps->arr)
     {
         free(ps->arr);//在 arr 进行动态内存开辟之后
@@ -23,20 +23,21 @@ void SLDestroy(SL * ps)
 }
 
 //顺序表打印函数
-void SLPrint(SL s)
-{
-  for (int i = 0;i<s.size;i++)
-  {
-    printf("%d ",s.arr[i]);
-  }
-  printf("\n");
-}
+// void SLPrint(SL s)
+// {
+//   for (int i = 0;i<s.size;i++)
+//   {
+//     printf("%d ",s.arr[i]);
+//   }
+//   printf("\n");
+// }
 
 
 
 //检查存储容量
 void SLCheckcapacity(SL *ps)
 {
+
     // 在插入前，应该先判断空间是否足够插入
     // 因为数组的下标为 0，所以 当前的size即数组中元素个数就是尾部插入的位置
     // 而判断空间是否足够，就要看 size 和 capacity 是否相等，如果相等，那就不够用
@@ -47,7 +48,7 @@ void SLCheckcapacity(SL *ps)
         //增加空间前还要判断 capacity 是否为 0
         //增容增多大的空间呢？最好增目前两倍的空间
         int Newcapacity = ps->capacity == 0 ? 4 : 2 * ps->capacity;
-      SLDataType * tmp  = (SLDataType *)realloc(ps->arr,Newcapacity*sizeof(SLDataType));
+        SLDataType * tmp  = (SLDataType *)realloc(ps->arr,Newcapacity*sizeof(SLDataType));
         //要检查是否申请成功
         if (tmp == NULL)
         {
@@ -58,6 +59,7 @@ void SLCheckcapacity(SL *ps)
         tmp = NULL;
         ps->capacity = Newcapacity;//空间内容也要更新
     }
+
 }
 
 
@@ -112,45 +114,45 @@ void SLPopFront(SL *ps)
 }
 
 //顺序表指定位置的插入
-void SLInsert(SL *ps,int pos,SLDataType n)
-{
-  assert(ps);
-  //临界情况就是头插和尾插
-  assert(pos >= 0 && pos <= ps->size);
-  //插入前要将待插入位置及以后的数据向后挪动
-  for (int i = ps->size;i>pos;i--)
-  {
-    ps->arr[i] = ps->arr[i-1];
-  }
-  ps->arr[pos] = n;
-  ps->size++;
-}
+// void SLInsert(SL *ps,int pos,SLDataType n)
+// {
+//   assert(ps);
+//   //临界情况就是头插和尾插
+//   assert(pos >= 0 && pos <= ps->size);
+//   //插入前要将待插入位置及以后的数据向后挪动
+//   for (int i = ps->size;i>pos;i--)
+//   {
+//     ps->arr[i] = ps->arr[i-1];
+//   }
+//   ps->arr[pos] = n;
+//   ps->size++;
+// }
 
-//顺序表的指定位置删除
-void SLErase(SL * ps ,int pos)
-{
-  assert(ps);
-  assert(pos >= 0 && pos < ps->size);
-  //将要删除位置的数据以后的数据往前移动，覆盖数组
-  for (int i =pos;i<ps->size-1;i++)
-  {
-    ps->arr[i] = ps->arr[i+1];
-  }
-  ps->size--;
-}
+// 顺序表的指定位置删除
+ void SLErase(SL * ps ,int pos)
+ {
+   assert(ps);
+   assert(pos >= 0 && pos < ps->size);
+   //将要删除位置的数据以后的数据往前移动，覆盖数组
+   for (int i =pos;i<ps->size-1;i++)
+   {
+     ps->arr[i] = ps->arr[i+1];
+   }
+   ps->size--;
+ }
 
 //顺序表的查找
-int SLFind(SL *ps,SLDataType n)
-{
-  assert(ps);
-  for (int i = 0;i<ps->size;i++)
-  {
-    if (ps->arr[i] == n)
-    {
-      //找到了
-      return i;
-    }
-  }
-  return -1;
-}
-
+// int SLFind(SL *ps,SLDataType n)
+// {
+//   assert(ps);
+//   for (int i = 0;i<ps->size;i++)
+//   {
+//     if (ps->arr[i] = n)
+//     {
+//       //找到了
+//       return i;
+//     }
+//   }
+//   return -1;
+// }
+//
