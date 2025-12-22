@@ -1,0 +1,12 @@
+//
+// Created by Dai on 2025/12/22.
+//
+
+#ifndef DATASTRUCTURE_EMPLOYMENT_SLLIST_H
+#define DATASTRUCTURE_EMPLOYMENT_SLLIST_H
+
+class SLList
+{
+};
+
+#endif // DATASTRUCTURE_EMPLOYMENT_SLLIST_H

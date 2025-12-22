@@ -10,7 +10,9 @@ add_executable(DataStructure_Employment
         C_Data_Structures/1.SeqList/SeqList.h
         C_Data_Structures/1.SeqList/test.c
         C_Data_Structures/1.SeqList/Contact.c
-        C_Data_Structures/1.SeqList/Contact.h)
+        C_Data_Structures/1.SeqList/Contact.h
+        C_Data_Structures/2.SLList/SLList.c
+        C_Data_Structures/2.SLList/SLList.h)
 # 添加自定义目标
 add_custom_target(open_terminal
         COMMAND open -a Terminal ./
