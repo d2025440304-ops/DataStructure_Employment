@@ -28,3 +28,17 @@ add_executable(SList_Run
 )
 # 头文件路径也要更新
 target_include_directories(SList_Run PRIVATE C_Data_Structures/2.SList)
+cmake_minimum_required(VERSION 3.28)
+project(DataStructure_Employment C)
+set(CMAKE_C_STANDARD 11)
+# ==========================================
+# 项目 3：带头双向循环链表 (DList)
+# ==========================================
+# 刚才报错是因为这里可能空着或者路径不对
+add_executable(List_Run
+        C_Data_Structures/3.List/List.c    # 核心源文件
+        C_Data_Structures/3.List/List.h
+        C_Data_Structures/3.List/test.c    # 头文件
+)
+# 这样你在 List.c 里写 #include "List.h" 就不会报红了
+target_include_directories(List_Run PRIVATE C_Data_Structures/3.List)

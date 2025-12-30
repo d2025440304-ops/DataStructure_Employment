@@ -34,21 +34,21 @@ void SLTTest02()
   //头插
   SLTPush_Front(&plist,1);
   //头删
-  SLTPop_Front(&plist);
-  SLTPop_Front(&plist);
-  SLTPop_Front(&plist);
-  SLTNode * pp = SLTFind(plist,4);
-  if (pp==NULL)
-  {
-    printf("找不到\n");
-  }else
-    printf("找到了\n");
+  // SLTPop_Front(&plist);
+  // SLTPop_Front(&plist);
+  // SLTPop_Front(&plist);
+  // SLTNode * pp = SLTFind(plist,4);
+  // if (pp==NULL)
+  // {
+  //   printf("找不到\n");
+  // }else
+  //   printf("找到了\n");
   //指定位置插入
   // SLTInsert(&plist,pp,3);
   //指定位置之后插入
-  SLTInsertAfter(pp,3);
-  //指定位置删除
-  SLTErase(&plist,pp);
+  // SLTInsertAfter(pp,3);
+  // //指定位置删除
+  // SLTErase(&plist,pp);
 
   SLTPrint(plist);
 }

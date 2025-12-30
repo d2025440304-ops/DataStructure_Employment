@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+//链表是一种线性表，逻辑结构是连续的
 //定义一个节点，在节点里有存储数据和指向下一个结构体的指针
-
 //存储数据的类型
 typedef int SLTDataType;
 

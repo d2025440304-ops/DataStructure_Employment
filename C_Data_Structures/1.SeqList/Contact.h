@@ -26,17 +26,24 @@ typedef struct personInfo
 //因为 SL 没有声明，所以需要前置声明
 struct SeqList;
 typedef struct SeqList Contact;//将顺序表重命名为通讯录名字
+
 //通讯录的初始化
 void Contact_Init(Contact * con);
+
 //通讯录的销毁
 void Contact_Destroy(Contact * con);
+
 //通讯录的添加数据
 void Contact_Add(Contact * con);
+
 //通讯录的删除数据
 void Contact_Del(Contact *con);
+
 //通讯录的修改
 void Contact_Modify(Contact * con);
+
 //通讯录的查找
 void Contact_Find(Contact * con);
+
 //通讯录的显示数据
 void Contact_Show(Contact * con);
