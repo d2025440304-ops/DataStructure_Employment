@@ -4,8 +4,6 @@
 //初始化
 void Contact_Init(Contact *con)
 {
-  //通讯录基于顺序表的实现，这里的contact 就是顺序表
-  //而顺序表的初试化无关类型，所以可以直接的进行应用
   //调用顺序表的初始化
   SLInit(con);//指向顺序表
 }

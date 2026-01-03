@@ -29,7 +29,7 @@ struct SeqList_
 //讲顺序表结构体类型重命名为SL
 typedef struct SeqList
 {
-    SLDataType *arr;//因为是动态，所以用一个指针，方便后续使用 malloc，realloc，calloc
+    SLDataType *arr;//因为是动态，所以用一个指针，方便后续使用 malloc，realloc
     int size;//用来记录使用的个数
     int capacity;//用来记录目前的空间
 }SL;
@@ -54,5 +54,6 @@ void SLPopFront(SL *ps);
 //顺序表的指定位置插入删除
 void SLInsert(SL *ps,int pos,SLDataType n);
 void SLErase(SL *ps,int pos);
+//寻找顺序表中的元素
 int SLFind(SL *ps,SLDataType n);
 

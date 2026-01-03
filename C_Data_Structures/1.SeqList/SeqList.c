@@ -22,15 +22,15 @@ void SLDestroy(SL * ps)
     ps->capacity = ps->size = 0;
 }
 
-//顺序表打印函数
-// void SLPrint(SL s)
-// {
-//   for (int i = 0;i<s.size;i++)
-//   {
-//     printf("%d ",s.arr[i]);
-//   }
-//   printf("\n");
-// }
+// 顺序表打印函数
+ void SLPrint(SL s)
+ {
+   for (int i = 0;i<s.size;i++)
+   {
+     printf("%d ",s.arr[i]);
+   }
+   printf("\n");
+ }
 
 
 
@@ -39,10 +39,9 @@ void SLCheckcapacity(SL *ps)
 {
 
     // 在插入前，应该先判断空间是否足够插入
-    // 因为数组的下标为 0，所以 当前的size即数组中元素个数就是尾部插入的位置
     // 而判断空间是否足够，就要看 size 和 capacity 是否相等，如果相等，那就不够用
     // 举例，当size是 6 时，待插的元素下标就是 6，而空间必须是 7
-    // 如果空间也是 6 的话，,空间不足就会越界访问1
+    // 如果空间也是 6 的话，,空间不足就会越界访问
     if (ps->size == ps->capacity)
     {
         //增加空间前还要判断 capacity 是否为 0
@@ -113,20 +112,20 @@ void SLPopFront(SL *ps)
   ps->size--;
 }
 
-//顺序表指定位置的插入
-// void SLInsert(SL *ps,int pos,SLDataType n)
-// {
-//   assert(ps);
-//   //临界情况就是头插和尾插
-//   assert(pos >= 0 && pos <= ps->size);
-//   //插入前要将待插入位置及以后的数据向后挪动
-//   for (int i = ps->size;i>pos;i--)
-//   {
-//     ps->arr[i] = ps->arr[i-1];
-//   }
-//   ps->arr[pos] = n;
-//   ps->size++;
-// }
+// // 顺序表指定位置的插入
+//  void SLInsert(SL *ps,int pos,SLDataType n)
+//  {
+//    assert(ps);
+//    //临界情况就是头插和尾插
+//    assert(pos >= 0 && pos <= ps->size);
+//    //插入前要将待插入位置及以后的数据向后挪动
+//    for (int i = ps->size;i>pos;i--)
+//    {
+//      ps->arr[i] = ps->arr[i-1];
+//    }
+//    ps->arr[pos] = n;
+//    ps->size++;
+//  }
 
 // 顺序表的指定位置删除
  void SLErase(SL * ps ,int pos)
@@ -141,18 +140,18 @@ void SLPopFront(SL *ps)
    ps->size--;
  }
 
-//顺序表的查找
-// int SLFind(SL *ps,SLDataType n)
-// {
-//   assert(ps);
-//   for (int i = 0;i<ps->size;i++)
-//   {
-//     if (ps->arr[i] = n)
-//     {
-//       //找到了
-//       return i;
-//     }
-//   }
-//   return -1;
-// }
-//
+// // 顺序表的查找
+//  int SLFind(SL *ps,SLDataType n)
+//  {
+//    assert(ps);
+//    for (int i = 0;i<ps->size;i++)
+//    {
+//      if (ps->arr[i] = n)
+//      {
+//        //找到了
+//        return i;
+//      }
+//    }
+//    return -1;
+//  }
+
