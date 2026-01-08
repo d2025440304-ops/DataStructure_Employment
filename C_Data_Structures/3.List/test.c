@@ -30,6 +30,7 @@ void Test01()
   find = NULL;
   LTprint(plist);
   LTDestroy(plist);
+
   plist = NULL;
 }
 int main()
