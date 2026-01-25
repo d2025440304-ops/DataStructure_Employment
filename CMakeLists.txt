@@ -42,3 +42,6 @@ add_executable(List_Run
 )
 # 这样你在 List.c 里写 #include "List.h" 就不会报红了
 target_include_directories(List_Run PRIVATE C_Data_Structures/3.List)
+add_executable(Stack_Run C_Data_Structures/4.Stack/Stack.c
+        C_Data_Structures/4.Stack/Stack.h
+        C_Data_Structures/4.Stack/Test.c)

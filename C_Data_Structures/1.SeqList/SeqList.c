@@ -138,7 +138,8 @@ void SLPopFront(SL *ps)
      ps->arr[i] = ps->arr[i+1];
    }
    ps->size--;
- }
+ }4
+
 
 // // 顺序表的查找
 //  int SLFind(SL *ps,SLDataType n)
