@@ -1,5 +1,5 @@
-#include <SeqList.h>
-#include <Contact.h>
+#include "SeqList.h"
+#include "Contact.h"
 
 //初始化
 void Contact_Init(Contact *con)
