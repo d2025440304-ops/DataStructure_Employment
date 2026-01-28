@@ -13,6 +13,7 @@
 //   printf("%d\n",STTop(&s));
 //   return 0;
 // }
+
 int main()
 {
   ST s;

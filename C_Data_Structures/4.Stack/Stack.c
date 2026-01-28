@@ -1,4 +1,5 @@
 #include "Stack.h"
+
 //初始化
 void STInit(ST *pst)
 {
@@ -10,7 +11,6 @@ void STInit(ST *pst)
   // pst->top = -1;
   pst->capacity = 0;
 }
-
 //栈的销毁
 void STDestroy(ST * pst)
 {

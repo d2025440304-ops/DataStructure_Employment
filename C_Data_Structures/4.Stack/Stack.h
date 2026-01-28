@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+//用数组来实现栈，先进后出的数据结构
+#define N 10;
 typedef  int STDataType;
 typedef struct stack
 {
