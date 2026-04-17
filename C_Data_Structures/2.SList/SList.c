@@ -33,24 +33,23 @@ SLTNode * SLTBuynode(SLTDataType x)
 //所以需要二级指针来接收指针的地址
 //*plist ------- **pphead 结构体
 //&plist ------- pphead   结构体指针的地址
-//plist --------*pphead   结构体指针
+//plist  ------- *pphead   结构体指针
 void SLTPush_Back(SLTNode ** pphead,SLTDataType x)
 {
-  assert(pphead );
+  assert(pphead);
   SLTNode * pnewnode = SLTBuynode(x);
-   if (*pphead == NULL)
-   {
-     *pphead = pnewnode;
-   }else
-   {
-     SLTNode *ptail = *pphead;
-     while (ptail->next)
-     {
-       ptail = ptail->next;
-     }
-      ptail->next = pnewnode;
-   }
-
+  if (*pphead == NULL)
+  {
+    *pphead = pnewnode;
+  }else
+  {
+    SLTNode * pptail = *pphead;
+    while (pptail->next)
+    {
+      pptail = pptail->next;
+    }
+    pnewnode = pptail->next;
+  }
 }
 
 //头插

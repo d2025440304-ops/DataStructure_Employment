@@ -13,9 +13,8 @@ typedef struct stack
   int top;
   int capacity;//容量
 }ST;
-
 //初始化和销毁
-void STInit(ST *pst);
+void STInit(ST * pst);
 void STDestroy(ST * pst);
 
 //入栈 和 出栈

@@ -1,9 +1,7 @@
 #include "Stack.h"
-
 //初始化
 void STInit(ST *pst)
 {
-  assert(pst);
   pst->arr = NULL;
   //此时的 top 指向栈顶的下一个元素
   pst->top = 0;

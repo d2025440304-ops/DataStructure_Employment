@@ -38,10 +38,17 @@ set(CMAKE_C_STANDARD 11)
 add_executable(List_Run
         C_Data_Structures/3.List/List.c    # 核心源文件
         C_Data_Structures/3.List/List.h
-        C_Data_Structures/3.List/test.c    # 头文件
+        C_Data_Structures/3.List/test.c
+        C_Data_Structures/5.Queue/test.c    # 头文件
 )
 # 这样你在 List.c 里写 #include "List.h" 就不会报红了
 target_include_directories(List_Run PRIVATE C_Data_Structures/3.List)
 add_executable(Stack_Run C_Data_Structures/4.Stack/Stack.c
         C_Data_Structures/4.Stack/Stack.h
         C_Data_Structures/4.Stack/Test.c)
+add_executable(Queue_Run
+        C_Data_Structures/5.Queue/queue.c
+        C_Data_Structures/5.Queue/queue.h
+        C_Data_Structures/5.Queue/test.c
+)
+target_include_directories(Queue_Run PRIVATE C_Data_Structures/5.Queue)
