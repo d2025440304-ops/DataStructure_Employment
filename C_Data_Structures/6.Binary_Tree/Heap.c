@@ -76,8 +76,6 @@ void Adjustlow(HPDataType *a,int parent,int size)
       child = 2*parent+1;
     }else break;
   }
-
-
 }
 void HPpop(HP * hp)
 {
