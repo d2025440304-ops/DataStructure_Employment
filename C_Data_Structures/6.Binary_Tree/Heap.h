@@ -14,6 +14,7 @@ typedef struct
   int capacity;
 }HP;//HP为容器
 
+void Swap(HPDataType *child,HPDataType * parent);
 void AdjustUp(HPDataType * a,int child);
 void Adjustlow(HPDataType *a,int parent,int size);
 void HPInit(HP * hp);
