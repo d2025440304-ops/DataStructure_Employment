@@ -22,8 +22,9 @@ void Swap(HPDataType *child,HPDataType * parent)
   *parent = x;
 }
 
-void AdjustUp(HPDataType * a,int child)
+void AdjustUp(HPDataType * a,HPDataType child)
 {
+  assert(a);
   int parent = (child-1)/2;
   while (child > 0)
   {
@@ -36,35 +37,32 @@ void AdjustUp(HPDataType * a,int child)
   }
 }
 
-void HPpush(HP * hp,HPDataType x)
+void HPpush(HP *hp,HPDataType x)
 {
-  //数组空间不够
-  if (hp->capacity == hp->size)
+  if (hp->size == hp->capacity)
   {
-    int newcapcity = hp->capacity == 0 ? 4 : 2*hp->capacity;
-    HPDataType * tmp = (HPDataType *)realloc(hp->a,sizeof(HPDataType)*newcapcity);
+    int newcapacity = hp->capacity == 0 ? 4 : 2*hp->capacity;
+    HPDataType * tmp = (HPDataType *)realloc(hp->a,sizeof(HPDataType)*newcapacity);
     if (tmp == NULL)
     {
       perror("realloc fail");
-      return;
+      return ;
     }
     hp->a = tmp;
-    hp->capacity = newcapcity;
+    hp->capacity = newcapacity;
   }
-  //往堆里插入元素
+
   hp->a[hp->size++] = x;
   int child = hp->size-1;
-  //循环起点，过程，结果
-  //向上调整算法
   AdjustUp(hp->a,child);
 }
-void Adjustlow(HPDataType *a,int parent,int size)
+
+void Adjustlow(HPDataType *a ,int parent,int size)
 {
-  assert(a);
-  int child = 2*parent +1;
-  while (child < size)//当没有孩子时，向下调整结束
+  int child = 2*parent+1;
+  while (child < size)
   {
-    if (child+1 < size && a[child+1] < a[child] )
+    if (child + 1 <size && a[child+1] < a[child])
     {
       child++;
     }
@@ -77,14 +75,14 @@ void Adjustlow(HPDataType *a,int parent,int size)
     }else break;
   }
 }
+
 void HPpop(HP * hp)
 {
   assert(hp);
   assert(hp->size > 0);
   Swap(&hp->a[0],&hp->a[hp->size-1]);
   hp->size--;
-  int parent = 0;
-  Adjustlow(hp->a,parent,hp->size);
+  Adjustlow(hp->a,0,hp->size);
 }
 
 HPDataType HPtop(HP * hp)
@@ -98,3 +96,4 @@ bool HPempty(HP *hp)
 {
   return hp->size == 0;
 }
+
