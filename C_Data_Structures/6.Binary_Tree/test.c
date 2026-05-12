@@ -55,6 +55,8 @@ HP hp;
 
 // void HeapSort0()
 // {
+
+//  建堆算法主要是向上调整和向下调整算法
 //   //堆排序，降序-小根堆
 //   int arr[] = {9,7,6,5,4,2,8};
 //   int sz = sizeof(arr)/sizeof(int);
@@ -123,6 +125,29 @@ HP hp;
 //   HPDestory(&hp);
 // }
 
+
+// void Heap0()
+// {
+//   int a[] = {4,3,2,5,7,9,8,1};
+//   int sz = sizeof(a)/sizeof(a[0]);
+//   //排一个升序--大根堆
+//
+//   for (int i = sz-2;i>0;i--)
+//   {
+//     Adjustlow(a,i,sz);
+//   }
+//
+//   for (int end = sz-1;end>0;end--)
+//   {
+//     Swap(&a[0],&a[end]);
+//     Adjustlow(a,0,end);
+//   }
+//
+//   for (int i = 0;i<sz;i++)
+//   {
+//     printf("%d ",a[i]);
+//   }
+// }
 
 typedef int BTDataType;
 
@@ -217,7 +242,7 @@ int Treesize(Treenode *root)
 }
 
 
-//分治思想，当一颗树是空时，它的叶子树是 0.当它只有一个节点的时候，它的叶子树是 0
+//分治思想，当一颗树是空时，它的叶子树是 0.当它只有一个节点的时候，它的叶子树是 1
 //当它是根时，加起来就是 0，当它是子叶是，就加 1
 int TreeleafSize(Treenode * root)
 {
@@ -230,6 +255,41 @@ int TreeleafSize(Treenode * root)
     return TreeleafSize(root->left)+TreeleafSize(root->right);
 }
 
+int TreeHigh(Treenode * root)
+{
+  if (root == NULL)
+  return 0;
+  int left = TreeHigh(root->left);
+  int right = TreeHigh(root->right);
+
+  return left > right ?
+              left+1 : right+1;
+}
+
+
+int TreeLevelKsize(Treenode * root,int k)
+{
+  if (root == NULL)   return 0;
+
+  if (k == 1) return 1;
+
+  return TreeLevelKsize(root->left,k-1) +
+          TreeLevelKsize(root->right,k-1);
+}
+
+Treenode * TreeFind(Treenode * root,BTDataType x)
+{
+  if (root == NULL) return NULL;
+
+  if (root->data == x)  return root;
+
+  Treenode * left = TreeFind(root->left,x);
+  if (left != NULL)
+    return left;
+
+  return TreeFind(root->right,x);
+}
+
 
 int main()
 {
@@ -237,9 +297,11 @@ int main()
   // hpsort();
   // HeapSort0();
   // Topk();
-
+  // Heap0();
   Treenode * root = CreatBinaryTree();
   Prevorder(root);
+  int r = TreeLevelKsize(root,3);
+  printf("%d",r);
   printf("\n");
   return 0;
 }
