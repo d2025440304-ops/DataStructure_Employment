@@ -1,4 +1,5 @@
 #include "Heap.h"
+#include "queue.h"
 
 // void test1()
 // {
@@ -288,6 +289,40 @@ Treenode * TreeFind(Treenode * root,BTDataType x)
     return left;
 
   return TreeFind(root->right,x);
+}
+
+void TreeDestroy(Treenode * root)
+{
+  if (root == NULL)
+    return ;
+
+  TreeDestroy(root->left);
+  TreeDestroy(root->right);
+  free(root);
+}
+
+void TreeLevelOrder(Treenode * root)
+{
+  Que q;
+  QueInit(&q);
+  if (root)
+    QuePush(&q,root);
+
+  while (!QueEmpty(&q))
+  {
+    Treenode * front = QueFront(&q);
+    QuePop(&q);
+
+    printf("%d ",front->data);
+
+    if (front->left)
+      QuePush(&q,front->left);
+    if (front->right)
+      QuePush(&q,front->right);
+
+  }
+
+  QueDestroy(&q);
 }
 
 
