@@ -301,6 +301,7 @@ void TreeDestroy(Treenode * root)
   free(root);
 }
 
+//层序遍历
 void TreeLevelOrder(Treenode * root)
 {
   Que q;
@@ -325,6 +326,38 @@ void TreeLevelOrder(Treenode * root)
   QueDestroy(&q);
 }
 
+//判断是否是完全二叉树--完全二叉树的概念是前 k-1层为满二叉树，最后一层不满，但必须从左到右连续
+bool CompleteTree(Treenode * root)
+{
+  Que q;
+  QueInit(&q);
+  if (root)
+    QuePush(&q,root);
+
+  while (!QueEmpty(&q))
+  {
+    Treenode * front = QueFront(&q);
+    QuePop(&q);
+    if (front == NULL)
+      break;
+    QuePush(&q,front->left);
+    QuePush(&q,front->right);
+  }
+
+  while (!QueEmpty(&q))
+  {
+    Treenode * front = QueFront(&q);
+    QuePop(&q);
+
+    if (front)
+    {
+      QueDestroy(&q);
+      return false;
+    }
+  }
+  QueDestroy(&q);
+  return true;
+}
 
 int main()
 {
