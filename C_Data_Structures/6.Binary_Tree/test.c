@@ -359,6 +359,7 @@ bool CompleteTree(Treenode * root)
   return true;
 }
 
+bool ComTree()
 int main()
 {
   // test1();

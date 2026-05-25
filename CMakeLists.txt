@@ -42,7 +42,8 @@ add_executable(List_Run
         C_Data_Structures/5.Queue/test.c
         C_Data_Structures/6.Binary_Tree/Heap.c
         C_Data_Structures/6.Binary_Tree/Heap.h
-        C_Data_Structures/6.Binary_Tree/test.c    # 头文件
+        C_Data_Structures/6.Binary_Tree/test.c
+        C_Data_Structures/7.Sort/Sort.c    # 头文件
 )
 # 这样你在 List.c 里写 #include "List.h" 就不会报红了
 target_include_directories(List_Run PRIVATE C_Data_Structures/3.List)
@@ -61,3 +62,11 @@ add_executable(Tree_Run
         C_Data_Structures/6.Binary_Tree/Heap.c
         C_Data_Structures/6.Binary_Tree/Heap.h)
 target_include_directories(Tree_Run PRIVATE C_Data_Structures/6.Binary_Tree)
+
+
+add_executable(Sort_Run
+        C_Data_Structures/7.Sort/Sort.c
+        C_Data_Structures/7.Sort/test.c
+        C_Data_Structures/7.Sort/Sort.h
+)
+target_include_directories(Sort_Run PRIVATE C_Data_Structures/7.Sort)

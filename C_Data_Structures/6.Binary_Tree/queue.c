@@ -88,8 +88,7 @@ void QueDestroy(Que * pq)
   while (cur)
   {
     QNode * next = cur->next;
-    cur = NULL;
-
+    free(cur);
     cur = next;
   }
   pq->phead = pq->ptail = NULL;
