@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug current C folder",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${fileDirname}/output/main",
+      "args": [],
+      "cwd": "${fileDirname}",
+      "preLaunchTask": "Build & Run current C folder"
+    }
+  ]
+}

@@ -8,7 +8,12 @@ void PrintArry(int *a,int sz)
   }
 }
 
-
+void Swap(int *a,int *b)
+{
+  int c = *a;
+  *a = *b;
+  *b = c;
+}
 
 void InsertSort(int *a,int sz)
 {
@@ -18,7 +23,7 @@ void InsertSort(int *a,int sz)
   for (int i = 0;i<sz-1;i++)
   {
     int end = i;
-    int tmp = end+1;
+    int tmp = a[end+1];
     while (end >= 0)
     {
       if (tmp < a[end])
@@ -32,5 +37,41 @@ void InsertSort(int *a,int sz)
       }
     }
     a[end+1] = tmp;
+  }
+}
+
+void AdjustDown(int *a,int n,int parent)
+{
+  int child = 2*parent+1;
+  while (child < n)
+  {
+    if (child+1 < n && a[child] < a[child+1])
+    {
+      child++;
+    }
+    if (a[child] > a[parent])
+    {
+      Swap(&a[child],&a[parent]);
+      parent = child;
+      child = 2*parent+1;
+    }
+    else
+    {
+      break;
+    }
+  }
+}
+
+void HeapSort(int * a,int n)
+{
+  //建堆，从最后一个非空子树开始向下调整,
+  for(int i = (n-2)/2;i>=0;i--)
+  {
+    AdjustDown(a,n,i);
+  }
+  for (int end = n-1; end > 0; end--)
+  {
+    Swap(&a[0],&a[end]);
+    AdjustDown(a,end,0);
   }
 }

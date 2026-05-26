@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build & Run current C folder",
+      "type": "shell",
+      "command": "mkdir -p '${fileDirname}/output' && clang -Wall -Wextra -g '${fileDirname}'/*.c -I'${fileDirname}' -o '${fileDirname}/output/main' && '${fileDirname}/output/main'",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$gcc",
+      "detail": "Compile and run all .c files in current file's folder"
+    }
+  ]
+}
