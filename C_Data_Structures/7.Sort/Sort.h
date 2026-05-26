@@ -9,3 +9,7 @@ void Swap(int *a,int *b);
 
 void AdjustDown(int *a,int n,int parent);
 void HeapSort(int *a,int n);
+
+void BubbleSort(int *a,int n); 
+
+void ShellSort(int *a,int n);
