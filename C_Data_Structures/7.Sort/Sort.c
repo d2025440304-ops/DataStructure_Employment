@@ -134,3 +134,58 @@ void ShellSort(int *a ,int n)
     }
   }
 }
+
+
+// O(N^2)
+void SelectSort(int *a,int n)
+{
+  int begin = 0,end = n-1;
+  while(begin < end)
+  {
+    int maxi = end,mini = begin;
+    for(int i = mini+1;i <= end;i++)
+    {
+      if(a[i] > a[maxi])
+      {
+        maxi = i;
+      }
+      if(a[i] < a[mini])
+      {
+        mini = i;
+      }
+    }
+    Swap(&a[mini],&a[begin]);
+    if(maxi == begin)
+    {
+      maxi = mini;
+    }
+    Swap(&a[maxi],&a[end]);
+    begin++;
+    end--;
+  }
+}
+
+// 一趟划分：以第一个元素为基准，将数组分成 [小, 基准, 大] 三部分
+// 返回基准值最终位置的索引
+int QuickSort(int *a, int left, int right)
+{
+  int keyi = left;
+  int begin = left,end = right;
+  while(begin < end)
+  {
+    while(begin < end && a[begin] < a[keyi])
+    {
+      begin++;
+    }
+    while(begin < end && a[end] > a[keyi])
+    {
+      end--;
+    }
+    Swap(&a[begin],&a[end]);
+  }
+  Swap(&a[keyi],&a[end]);
+  keyi = begin;
+  QuickSort(a,left,keyi-1);
+  QuickSort(a,keyi+1,right);
+}
+

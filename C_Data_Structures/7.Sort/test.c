@@ -32,6 +32,14 @@ void TestShellsort()
   PrintArry(arr,sz);
 }
 
+void TestSelectsort()
+{
+  int arr[] = {9,8,7,6,5,4,3,2,1};
+  int sz = sizeof(arr)/sizeof(arr[0]);
+  SelectSort(arr,sz);
+  PrintArry(arr,sz);
+}
+
 int main()
 {
   printf("InsertSort: ");
@@ -48,6 +56,10 @@ int main()
 
   printf("ShellSort:  ");
   TestShellsort();
+  printf("\n");
+
+  printf("SelectSort: ");
+  TestSelectsort();
   printf("\n");
 
   return 0;
