@@ -167,20 +167,25 @@ void SelectSort(int *a,int n)
 
 // 一趟划分：以第一个元素为基准，将数组分成 [小, 基准, 大] 三部分
 // 返回基准值最终位置的索引
-int QuickSort(int *a, int left, int right)
+void QuickSort(int *a, int left, int right)
 {
+  if (left >= right)
+    return;
+
   int keyi = left;
   int begin = left,end = right;
   while(begin < end)
   {
-    while(begin < end && a[begin] < a[keyi])
-    {
-      begin++;
-    }
-    while(begin < end && a[end] > a[keyi])
+    while(begin < end && a[end] >= a[keyi])
     {
       end--;
     }
+
+    while(begin < end && a[begin] <= a[keyi])
+    {
+      begin++;
+    }
+    
     Swap(&a[begin],&a[end]);
   }
   Swap(&a[keyi],&a[end]);

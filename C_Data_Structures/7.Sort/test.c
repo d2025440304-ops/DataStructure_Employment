@@ -40,6 +40,14 @@ void TestSelectsort()
   PrintArry(arr,sz);
 }
 
+void TestQuicksort()
+{
+  int arr[] = {9,8,7,6,5,4,3,2,1};
+  int sz = sizeof(arr)/sizeof(arr[0]);
+  QuickSort(arr,0,sz-1);
+  PrintArry(arr,sz);
+}
+
 int main()
 {
   printf("InsertSort: ");
@@ -60,6 +68,10 @@ int main()
 
   printf("SelectSort: ");
   TestSelectsort();
+  printf("\n");
+
+  printf("QuickSort:  ");
+  TestQuicksort();
   printf("\n");
 
   return 0;
