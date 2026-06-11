@@ -135,14 +135,14 @@ void ShellSort(int *a ,int n)
   }
 }
 
-
+// 关键点：max/min 都要从 begin 开始遍历整个区间，不能漏掉 begin 位置
 // O(N^2)
 void SelectSort(int *a,int n)
 {
   int begin = 0,end = n-1;
   while(begin < end)
   {
-    int maxi = end,mini = begin;
+    int maxi = begin,mini = begin;
     for(int i = mini+1;i <= end;i++)
     {
       if(a[i] > a[maxi])
@@ -167,11 +167,44 @@ void SelectSort(int *a,int n)
 
 // 一趟划分：以第一个元素为基准，将数组分成 [小, 基准, 大] 三部分
 // 返回基准值最终位置的索引
+
+//三数取中，三个数左中右，取大小是中间的那个下标
+int Getmidi(int *a,int left,int right)
+{
+  int midi =  (left+right)/2;
+  if(a[left] < a[midi])
+  {
+    if(a[midi] < a[right])
+    {
+      return midi;
+    }
+    else if(a[left] < a[right])
+    {
+      return right;
+    }
+    else return left;
+  }
+  else{
+    //a[left] > a[midi]
+    if(a[right] > a[left])
+    {
+      return left;
+    }
+    else if(a[midi] > a[right])
+    {
+      return midi;
+    }
+    else return right;
+  }
+}
+
 void QuickSort(int *a, int left, int right)
 {
   if (left >= right)
     return;
 
+  int midi = Getmidi(a,left,right);
+  Swap(&a[midi],&a[left]);
   int keyi = left;
   int begin = left,end = right;
   while(begin < end)
@@ -194,3 +227,63 @@ void QuickSort(int *a, int left, int right)
   QuickSort(a,keyi+1,right);
 }
 
+void quicksort_(int *a,int left,int right)
+{
+  int i = 0,L = -1,R = right-1;
+  int key = 0;
+  while(i < R)
+  {
+    if(a[i] == a[key])  swap(a[++L],a[i++]);
+    else if(a[i] < a[key])
+  }
+}
+
+// 三路快速排序（Dutch National Flag 划分）
+// 一次划分将数组分为 < key / = key / > key 三段，= key 段不再递归
+// 优势：解决大量重复元素时 QuickSort 退化为 O(N²) 的问题
+// pivot 选取：复用 Getmidi 取三数中值，避免极端有序数据退化
+void QuickSort3Way(int *a,int left,int right)
+{
+  if (left >= right)
+    return;
+
+  // 选 pivot 并交换到 left 位置
+  int midi = Getmidi(a,left,right);
+  Swap(&a[midi],&a[left]);
+  int key = a[left];
+
+  // 三个游标维护循环不变量：
+  // a[left ... lt-1]   < key
+  // a[lt   ... i-1]    = key
+  // a[i    ... gt]     尚未处理
+  // a[gt+1 ... right]  > key
+  int lt = left;     // < key 区间的右端（开区间）
+  int gt = right;    // > key 区间的左端（开区间）
+  int i = left;      // 当前考察元素
+
+  while (i <= gt)
+  {
+    if (a[i] < key)
+    {
+      // 把 a[i] 换到 < key 区间末尾，lt 区间扩大
+      Swap(&a[i],&a[lt]);
+      lt++;
+      i++;
+    }
+    else if (a[i] > key)
+    {
+      // 把 a[i] 换到 > key 区间开头，gt 区间扩大
+      // 注意：i 不递增，因为换过来的 a[gt] 还没检查过
+      Swap(&a[i],&a[gt]);
+      gt--;
+    }
+    else  // a[i] == key
+    {
+      i++;
+    }
+  }
+
+  // 递归时跳过 = key 部分
+  QuickSort3Way(a,left,lt-1);
+  QuickSort3Way(a,gt+1,right);
+}
