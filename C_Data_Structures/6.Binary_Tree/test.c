@@ -359,7 +359,7 @@ bool CompleteTree(Treenode * root)
   return true;
 }
 
-bool ComTree()
+// CompleteTree 已实现"判断完全二叉树"功能，删除残缺的 ComTree 声明
 int main()
 {
   // test1();

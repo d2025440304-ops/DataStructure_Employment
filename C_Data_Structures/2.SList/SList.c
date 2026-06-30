@@ -48,7 +48,8 @@ void SLTPush_Back(SLTNode ** pphead,SLTDataType x)
     {
       pptail = pptail->next;
     }
-    pnewnode = pptail->next;
+    // 把新节点接到尾节点后面；赋值方向不能写反，否则新节点没入链表
+    pptail->next = pnewnode;
   }
 }
 

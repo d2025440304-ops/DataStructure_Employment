@@ -88,8 +88,7 @@ void QueDestroy(Que * pq)
   while (cur)
   {
     QNode * next = cur->next;
-    cur = NULL;
-
+    free(cur);   // 先释放当前节点，再移动到下一个，否则会内存泄漏
     cur = next;
   }
   pq->phead = pq->ptail = NULL;

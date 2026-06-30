@@ -27,7 +27,7 @@ void STPush(ST * pst,STDataType x)
     if (tmp == NULL)
     {
       perror("realloc fail");
-      return;
+      exit(1);  // 扩容失败必须终止，否则下面写入空指针会段错误
     }
     pst->arr = tmp;
     pst->capacity = newcapacity;
